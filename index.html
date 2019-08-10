@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style">
+    
+    <title>Document</title>
+</head>
+<body>
+
+    <h1 >付款金额<span id='amount'>&&&amount&&&</span></h1>
+    <button id='button'>打钱</button>
+    <script>
+        button.addEventListener('click',()=>{
+            let script = document.createElement('script')
+            let functionName = 'chang' + parseInt(Math.random()*100000,10)
+
+            window[functionName] = (result)=>{
+                if(result === 'success'){
+                    amount.innerText = amount.innerText -1
+                }
+            }
+            script.src = 'http://localhost:8003/pay?callback='+functionName
+            document.body.appendChild(script)
+
+            script.onload = ()=>{
+                script.remove()
+                delete functionName
+            }
+            script.onerroe = ()=>{
+                alert('fail')
+                delete functionName
+            }
+        })
+
+    </script>
+
+</body>
+</html>
